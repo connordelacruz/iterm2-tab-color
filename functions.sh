@@ -35,11 +35,27 @@ it2-tab-color() {
     echo -ne "\033]6;1;bg;red;brightness;$R\a"
     echo -ne "\033]6;1;bg;green;brightness;$G\a"
     echo -ne "\033]6;1;bg;blue;brightness;$B\a"
+    unset R G B
 }
 
 # Reset tab color to default
 it2-tab-reset() {
     echo -ne "\033]6;1;bg;*;default\a"
+}
+
+# Check for ~/.base16_theme and set the tab color based on that
+it2-b16-theme() {
+    if [ -f "$HOME/.base16_theme" ]; then
+        # If no argument was passed, default to color00
+        if [ "$#" -lt 1 ]; then
+            colornum="00"
+        else
+            colornum="$1"
+        fi
+        color="$(perl -nle "print \$& if m{color$colornum=\"\K.*(?=\")}" "$HOME/.base16_theme")"
+        it2-tab-color ${color///}
+        unset color colornum
+    fi
 }
 
 
