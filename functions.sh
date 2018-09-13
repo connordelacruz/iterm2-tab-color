@@ -1,5 +1,7 @@
 # iTerm2 tab color functions
 
+# TODO: add environment variable with last set color
+
 # Set the tab color
 it2-tab-color() {
     # takes 1 hex string argument or 3 hex values for RGB
