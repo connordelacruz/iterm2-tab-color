@@ -1,6 +1,6 @@
 # iTerm2 tab color functions
 
-# TODO: add environment variable with last set color
+# TODO: add environment variable with last set color?
 
 # Set the tab color
 it2-tab-color() {
@@ -28,16 +28,16 @@ it2-tab-color() {
             ;;
         *)
             echo "Usage: it2-tab-color color_hex"
-            echo "          color_hex: 6 digit hex value (e.g. 5FB3B3)"
+            echo "          color_hex: 6 digit hex value (e.g. 1B2B34)"
             echo "       it2-tab-color r_val g_val b_val"
-            echo "          *_val: values for R, G, B from 0-255 (e.g. 95 179 179)"
+            echo "          *_val: values for R, G, B from 0-255 (e.g. 27 43 52)"
             return
             ;;
     esac
     echo -ne "\033]6;1;bg;red;brightness;$R\a"
     echo -ne "\033]6;1;bg;green;brightness;$G\a"
     echo -ne "\033]6;1;bg;blue;brightness;$B\a"
-    unset R G B
+    unset R G B hex
 }
 
 # Reset tab color to default
