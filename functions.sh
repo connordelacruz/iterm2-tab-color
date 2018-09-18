@@ -1,6 +1,9 @@
+# ================================================================
 # iTerm2 tab color functions
-
-# TODO: add environment variable with last set color?
+#
+# Author: Connor de la Cruz (connor.c.delacruz@gmail.com)
+# Repo: https://github.com/connordelacruz/iterm2-tab-color
+# ================================================================
 
 # Set the tab color
 it2-tab-color() {
