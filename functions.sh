@@ -8,6 +8,7 @@
 # Set the tab color
 it2-tab-color() {
     # takes 1 hex string argument or 3 hex values for RGB
+    local R G B
     case "$#" in
         3)
             R="$1"
@@ -15,19 +16,15 @@ it2-tab-color() {
             B="$3"
             ;;
         1)
-            hex="$1"
+            local hex="$1"
             # Remove leading # if present
             if [[ "${hex:0:1}" == "#" ]]; then
                 hex="${hex:1}"
             fi
-            # Get hex values for each channel
-            R="${hex:0:2}"
-            G="${hex:2:2}"
-            B="${hex:4}"
-            # Convert to decimal
-            R="$((16#$R))"
-            G="$((16#$G))"
-            B="$((16#$B))"
+            # Get hex values for each channel and convert to decimal
+            R="$((16#${hex:0:2}))"
+            G="$((16#${hex:2:2}))"
+            B="$((16#${hex:4}))"
             ;;
         *)
             echo "Usage: it2-tab-color color_hex"
@@ -40,7 +37,6 @@ it2-tab-color() {
     echo -ne "\033]6;1;bg;red;brightness;$R\a"
     echo -ne "\033]6;1;bg;green;brightness;$G\a"
     echo -ne "\033]6;1;bg;blue;brightness;$B\a"
-    unset R G B hex
 }
 
 # Reset tab color to default
@@ -51,6 +47,7 @@ it2-tab-reset() {
 # Check for ~/.base16_theme and set the tab color based on that
 it2-b16-theme() {
     if [ -f "$HOME/.base16_theme" ]; then
+        local colornum color
         # If no argument was passed, default to color00
         if [ "$#" -lt 1 ]; then
             colornum="00"
@@ -59,7 +56,6 @@ it2-b16-theme() {
         fi
         color="$(perl -nle "print \$& if m{color$colornum=\"\K.*(?=\")}" "$HOME/.base16_theme")"
         it2-tab-color ${color///}
-        unset color colornum
     fi
 }
 
