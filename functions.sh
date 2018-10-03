@@ -37,11 +37,15 @@ it2-tab-color() {
     echo -ne "\033]6;1;bg;red;brightness;$R\a"
     echo -ne "\033]6;1;bg;green;brightness;$G\a"
     echo -ne "\033]6;1;bg;blue;brightness;$B\a"
+    # Export environment variable to maintain colors during session
+    export IT2_SESSION_COLOR="$R $G $B"
 }
 
 # Reset tab color to default
 it2-tab-reset() {
     echo -ne "\033]6;1;bg;*;default\a"
+    # Unset environment variable
+    unset IT2_SESSION_COLOR
 }
 
 # Check for ~/.base16_theme and set the tab color based on that
@@ -59,4 +63,8 @@ it2-b16-theme() {
     fi
 }
 
+# Restore session tab color
+if [ -n "$IT2_SESSION_COLOR" ]; then
+    it2-tab-color $IT2_SESSION_COLOR
+fi
 
