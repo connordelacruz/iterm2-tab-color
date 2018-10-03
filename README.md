@@ -3,6 +3,10 @@
 Functions for setting the iTerm 2 tab/title bar color using their [proprietary
 escape codes](https://www.iterm2.com/documentation-escape-codes.html).
 
+## TODO
+
+- Document various ways of setting color automatically at startup
+
 ## Setup
 
 Source `functions.sh` in your `.bashrc` file.  
@@ -57,4 +61,16 @@ it2-b16-theme <color number>
   
 (**Note:** some colors may not work correctly if `~/.base16_theme` assigns it to
 a local variable)
+
+
+## Environment Variables
+
+When `it2-tab-color` or `it2-b16-theme` are called, they will set the
+environment variable `IT2_SESSION_COLOR` to the RGB values of the current tab
+color. `functions.sh` checks this variable at runtime and will restore the color
+if set. This allows the tab color to be maintained if `exec bash` is called, for
+example.
+
+When `it2-tab-reset` is called, `IT2_SESSION_COLOR` will be unset.
+
 
