@@ -3,9 +3,6 @@
 Functions for setting the iTerm 2 tab/title bar color using their [proprietary
 escape codes](https://www.iterm2.com/documentation-escape-codes.html).
 
-## TODO
-
-- Document various ways of setting color automatically at startup
 
 ## Setup
 
@@ -73,4 +70,35 @@ example.
 
 When `it2-tab-reset` is called, `IT2_SESSION_COLOR` will be unset.
 
+
+## Set Tab Color Automatically On Startup
+
+To automatically set the tab color on startup, add something like the following
+to your `.bashrc`:
+
+```bash
+# Source iTerm2 tab color functions
+. ~/.iterm2-tab-color/functions.sh
+
+# Set the color on startup
+it2-tab-color 1B2B34
+```
+
+Note that this will *always* set it to the same color, disregarding the value of
+the `IT2_SESSION_COLOR` variable. To set the color automatically at the start of
+a session and keep track of changes to the session color, add something like the
+following to your `.bashrc`:
+
+```bash
+# Source iTerm2 tab color functions
+. ~/.iterm2-tab-color/functions.sh
+
+# Set the color on startup
+if [ -z "$IT2_SESSION_COLOR" ]; then
+    it2-tab-color 1B2B34
+fi
+```
+
+This will only set the tab color if `IT2_SESSION_COLOR` isn't set, allowing you
+to change the tab color and maintain the new color if `exec bash` is called.
 
