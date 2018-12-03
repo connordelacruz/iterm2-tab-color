@@ -3,6 +3,11 @@
 Functions for setting the iTerm 2 tab/title bar color using their [proprietary
 escape codes](https://www.iterm2.com/documentation-escape-codes.html).
 
+**Note:** iTerm2 title bar color changing doesn't work on High Sierra
+([source](https://gitlab.com/gnachman/iterm2/issues/4080#note_43758478)), but
+is [available again in Mojave](https://www.patreon.com/posts/20684577). Tab
+color changing should be available regardless of OS version.
+
 
 ## Setup
 
