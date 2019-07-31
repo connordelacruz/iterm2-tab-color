@@ -56,7 +56,8 @@ it2-b16-theme() {
         if [ "$#" -lt 1 ]; then
             colornum="00"
         else
-            colornum="$1"
+            # Add leading 0 if necessary
+            colornum="$(printf "%02d" $1)"
         fi
         color="$(perl -nle "print \$& if m{color$colornum=\"\K.*(?=\")}" "$HOME/.base16_theme")"
         it2-tab-color ${color///}
