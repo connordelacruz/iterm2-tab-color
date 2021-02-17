@@ -8,6 +8,21 @@ escape codes](https://www.iterm2.com/documentation-escape-codes.html).
 is [available again in Mojave](https://www.patreon.com/posts/20684577). Tab
 color changing should be available regardless of OS version.
 
+## Contents
+
+<!-- vim-markdown-toc GFM -->
+
+* [Setup](#setup)
+* [Usage](#usage)
+    * [Set Tab Color](#set-tab-color)
+    * [Reset Tab Color](#reset-tab-color)
+    * [Base16 Shell Support](#base16-shell-support)
+* [Environment Variables](#environment-variables)
+* [Set Tab Color Automatically On Startup](#set-tab-color-automatically-on-startup)
+* [Create Aliases for Quick Color Switching](#create-aliases-for-quick-color-switching)
+
+<!-- vim-markdown-toc -->
+
 
 ## Setup
 
@@ -106,4 +121,21 @@ fi
 
 This will only set the tab color if `IT2_SESSION_COLOR` isn't set, allowing you
 to change the tab color and maintain the new color if `exec bash` is called.
+
+
+## Create Aliases for Quick Color Switching
+
+If you have go-to tab colors, you may want to consider creating aliases for them
+in your `.bashrc` for quick color switching.
+
+**Example:**
+
+```bash
+# Example palette: https://coolors.co/ff6d77-34d1bf-1f01b9-71a9f7-fcbf49
+alias it2-coral='it2-tab-color FF6D77'
+alias it2-turquoise='it2-tab-color 34D1BF'
+alias it2-blue='it2-tab-color 1F01B9'
+alias it2-yellow='it2-tab-color FCBF49'
+alias it2-lavendar='it2-tab-color 71A9F7'
+```
 
